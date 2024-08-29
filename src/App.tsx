@@ -19,7 +19,7 @@ const allowedKeys = [
   "Space",
 ];
 
-const STEP = 10;
+const STEP = 20;
 const JUMP_LIMIT = 120;
 
 function App() {
@@ -69,6 +69,8 @@ function App() {
     setMovement((prev) => ({ ...prev, Left: false, Right: false }));
   }
 
+  console.log(isFalling) 
+
   const gameLoop = useCallback(() => {
     if (movement.Right ? !movement.Left : movement.Left) {
       setIsMoving(true);
@@ -104,6 +106,7 @@ function App() {
       }
     } else {
       if (playerPositionY > 0) {
+        setIsFalling(true)
         setPlayerPositionY((prev) => (prev >= 0 ? prev - 30 : 0));
       } else {
         setIsFalling(false);
